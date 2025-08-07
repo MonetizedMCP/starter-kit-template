@@ -1,118 +1,87 @@
-# MonetizedMCP TypeScript SDK
+# 🚀 MonetizedMCP Starter Kit Template
 
-A TypeScript utility library that enables MCP servers to receive programmatic payments. This library provides abstracts tool definitions for the 3 signature MonetizedMCP tools: price-listing, payment-methods, and make-purchase. It also contains methods signing transactions and verifying/settling payments.
+**Turn any API into AI agent revenue in minutes** – Transform your existing APIs into monetized services that AI agents can discover, pay for, and use automatically through the Fluora marketplace.
 
-## Features
+## 🎯 Choose Your Path
 
-- Sign transactions for X402 payments
-- Verify and settle payments using the X402 facilitator
-- Support for Base Sepolia testnet and Base Mainnet
-- Integration with Model Context Protocol (MCP) for monetized services
-- Support for USDC payments
+### 🤖 **[Vibe Coding (Recommended)](docs/vibe-coding/cursor-guide.md)**
+Use AI coding tools (Cursor, Claude Code) to automatically convert APIs into MonetizedMCP servers
+- **Zero configuration needed** - AI handles the conversion
+- **Works with any REST API** - Weather, PDF, Data, etc.
+- **Ready-to-use prompts** included
 
-## Installation
+### ⚡ **[Quick Start Guides](docs/quick-start/)**
+Step-by-step manual implementation
+- **[Monetize Existing API](docs/quick-start/existing-api.md)** - Wrap your current API
+- **[Build New Service](docs/quick-start/new-service.md)** - Create from scratch  
+- **[Migrate MCP Server](docs/quick-start/migration.md)** - Convert existing MCP
+
+### 💰 **Revenue Potential**
+- **$0.01 - $10+** per API call from AI agents
+- **Auto-discovery** through Fluora marketplace
+- **Global distribution** to millions of AI agents
+
+## 🛠 Installation & Setup
 
 ```bash
-npm install monetizedmcp-sdk
+# Clone this template
+git clone https://github.com/MonetizedMCP/starter-kit-template
+cd starter-kit-template
+
+# Install dependencies
+npm install
+
+# Configure environment (see guides for details)
+cp .env.example .env
+# Edit .env with your credentials
 ```
 
-## Configuration
+## 📚 Documentation
 
-```bash
-# To use @coinbase/x402 facilitator
-CDP_API_KEY_ID=your_cdp_api_key_id
-CDP_API_KEY_SECRET=your_cdp_api_key_secret
-```
+### 🤖 **Vibe Coding (Primary Focus)**
+- **[Cursor Guide](docs/vibe-coding/cursor-guide.md)** - Complete Cursor integration guide
+- **[Claude Code Guide](docs/vibe-coding/claude-code-guide.md)** - Claude Code setup and usage
+- **[Prompts Library](docs/vibe-coding/prompts-library.md)** - Ready-to-use conversion prompts
+- **[Troubleshooting](docs/vibe-coding/troubleshooting.md)** - Common issues and solutions
 
-## Usage
+### 📖 **Implementation Guides**
+- **[Payment Setup](docs/guides/payment-setup.md)** - Coinbase CDP configuration
+- **[Marketplace Integration](docs/guides/marketplace-integration.md)** - Fluora marketplace setup
+- **[Revenue Optimization](docs/guides/revenue-optimization.md)** - Pricing strategies
 
-### Basic Payment Operations
+### 📋 **Reference**
+- **[API Reference](docs/reference/api-reference.md)** - Complete SDK documentation
+- **[Types & Interfaces](docs/reference/types.md)** - TypeScript definitions
+- **[Code Examples](docs/reference/examples.md)** - Working implementation samples
 
-```typescript
-import { PaymentsTools, PaymentMethods } from "monetizedmcp-sdk";
+## 🔗 Key Links
 
-const payments = new PaymentsTools();
+- **[Fluora Marketplace](https://www.fluora.ai)** - Where agents discover your services
+- **[Local Testing Guide](https://www.fluora.ai/alpha/guides/local-testing-guide)** - Test with Claude Desktop
+- **[Sample Implementation](https://github.com/MonetizedMCP/monetized-mcp-sample)** - PDFShift example
 
-// Sign a transaction
-const paymentHeader = await payments.signTransaction(
-  0.01, // amount
-  "0x...", // seller address
-  "0x...", // buyer private key
-  "https://example.com/resource", // resource URL
-  PaymentMethods.USDC_BASE_SEPOLIA // payment method
-);
+## 🆘 Support
 
-// Verify and settle a payment
-const verification = await payments.verifyAndSettlePayment(
-  "0.01", // amount as Money type
-  "0x...", // seller address
-  {
-    facilitatorUrl: "https://x402.org/facilitator",
-    paymentHeader: paymentHeader,
-    resource: "https://example.com/resource",
-    paymentMethod: PaymentMethods.USDC_BASE_SEPOLIA,
-  }
-);
-```
+- **[Issues](https://github.com/MonetizedMCP/starter-kit-template/issues)** - Bug reports and feature requests  
+- **[Discussions](https://github.com/MonetizedMCP/starter-kit-template/discussions)** - Community Q&A
+- **[Fluora Discord](https://discord.gg/fluora)** - Real-time support
 
-### MCP Integration
+## 📄 License
 
-```typescript
-import { MonetizedMCPServer } from "monetizedmcp-sdk";
+MIT License - see [LICENSE](LICENSE) for details.
 
-class MyMCPServer extends MonetizedMCPServer {
-  constructor() {
-    super();
-    super().runMonetizeMCPServer();
-  }
+---
 
-  async priceListing({
-    searchQuery,
-  }: PriceListingRequest): Promise<PriceListingResponse> {
-    return {
-      items: [
-        {
-          name: "Service Name",
-          description: "Service Description",
-          price: {
-            amount: 0.5,
-            // PaymentMethods.USDC_BASE_SEPOLIA or PaymentMethods.USDC_BASE_MAINNET
-            paymentMethod: ...
-          },
-          currency: "USDC",
-          params: {
-            // Service-specific parameters
-          },
-        },
-      ],
-    };
-  }
-
-  async paymentMethods(): Promise<PaymentMethodsResponse> {
-    return {
-      walletAddress: "0x...",
-      paymentMethod: PaymentMethods.USDC_BASE_SEPOLIA,
-    };
-  }
-
-  async makePurchase(
-    request: MakePurchaseRequest
-  ): Promise<MakePurchaseResponse> {
-    // Implement purchase logic
-  }
-}
-```
+**⭐ Star this repo** if it helps you monetize your APIs with AI agents!
 
 ## Supported Payment Networks
 
 ### Base Sepolia Testnet
 
-- Contract Address: 0x036CbD53842c5426634e7929541eC2318f3dCF7e
 - Supported Tokens: USDC
 
 ### Base Mainnet
 
-- Contract Address: 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913
 - Supported Tokens: USDC
 
 ## API Reference
