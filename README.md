@@ -279,10 +279,10 @@ If you encounter module-related errors, ensure your project is using ES Modules:
    }
    ```
    
-**Configure `package.json`**:
+**Double check to see that you have the correct version of `monetizedmcp-sdk` in `package.json`**:
 ```json
 "dependencies": {
- "monetizedmcp-sdk": "0.1.21",
+ "monetizedmcp-sdk": "0.1.21"
 }
 ```
 
