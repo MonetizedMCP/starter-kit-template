@@ -64,7 +64,6 @@ cp .env.example .env
 
 - **[Issues](https://github.com/MonetizedMCP/starter-kit-template/issues)** - Bug reports and feature requests  
 - **[Discussions](https://github.com/MonetizedMCP/starter-kit-template/discussions)** - Community Q&A
-- **[Fluora Discord](https://discord.gg/fluora)** - Real-time support
 
 ## 📄 License
 
@@ -247,6 +246,15 @@ If you encounter module-related errors, ensure your project is using ES Modules:
      }
    }
    ```
+
+#### MonetizedMCP Library to import 
+
+**Configure `package.json`**:
+```json
+{
+  "monetizedmcp-sdk": "file:monetizedmcp-sdk-0.1.23.tgz",
+}
+```
 
 #### Payment Verification Issues
 
