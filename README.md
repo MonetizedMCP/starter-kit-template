@@ -281,8 +281,8 @@ If you encounter module-related errors, ensure your project is using ES Modules:
    
 **Configure `package.json`**:
 ```json
-{
-  "monetizedmcp-sdk": "file:monetizedmcp-sdk-0.1.23.tgz",
+"dependencies": {
+ "monetizedmcp-sdk": "0.1.21",
 }
 ```
 
